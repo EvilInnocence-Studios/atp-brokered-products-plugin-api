@@ -1,4 +1,4 @@
-import { get, post, patch, del } from "@core/express/wrappers"
+import { get, post, patch, del } from "../../core/express/wrappers"
 import { BrokerageHandlers } from "./handlers"
 
 export const BrokerageEndpoints = {
