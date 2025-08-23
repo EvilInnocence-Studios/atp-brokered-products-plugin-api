@@ -1,6 +1,6 @@
 import { database } from "../../core/database";
 import { IMigration } from "../../core/dbMigrations";
-import { insertPermissions } from "../../uac/migrations/util";
+import { insertPermissions, insertRolePermissions } from "../../uac/migrations/util";
 
 const db = database();
 
@@ -27,10 +27,20 @@ export const migrations:IMigration[] = [{
             t.string("brokerageProductId", 255);
         }),
         
-    initData: () => insertPermissions(db, [
-        { name: "brokerage.view", description: "View brokerages" },
-        { name: "brokerage.create", description: "Create brokerages" },
-        { name: "brokerage.update", description: "Update brokerages" },
-        { name: "brokerage.delete", description: "Delete brokerages" },
-    ]),
+    initData: async () => {
+        await insertPermissions(db, [
+            { name: "brokerage.view", description: "View brokerages" },
+            { name: "brokerage.create", description: "Create brokerages" },
+            { name: "brokerage.update", description: "Update brokerages" },
+            { name: "brokerage.delete", description: "Delete brokerages" },
+        ]);
+        await insertRolePermissions(db, [
+            { roleName: "SuperUser", permissionName: "brokerage.view" },
+            { roleName: "SuperUser", permissionName: "brokerage.create" },
+            { roleName: "SuperUser", permissionName: "brokerage.update" },
+            { roleName: "SuperUser", permissionName: "brokerage.delete" },
+            { roleName: "Public", permissionName: "brokerage.view" },
+            { roleName: "Customer", permissionName: "brokerage.view" },
+        ]);
+    }
 }];
