@@ -4,11 +4,11 @@ import { insertPermissions, insertRolePermissions } from "../../uac/migrations/u
 
 const db = database();
 
-export const migrations:IMigration[] = [{
+export const migrations: IMigration[] = [{
     name: "init",
     module: "brokered-products-plugin",
     description: "Initialize the brokerages products plugin",
-    order: 0,
+    order: 3,
     down: () => db.schema
         .dropTableIfExists("brokerages")
         .alterTable("products", (t) => {
@@ -26,7 +26,7 @@ export const migrations:IMigration[] = [{
             t.string("brokeredAt", 255);
             t.string("brokerageProductId", 255);
         }),
-        
+
     initData: async () => {
         await insertPermissions(db, [
             { name: "brokerage.view", description: "View brokerages" },
