@@ -4,7 +4,7 @@ import { insertPermissions, insertRolePermissions } from "../../uac/migrations/u
 
 const db = database();
 
-export const migrations: IMigration[] = [{
+export const init:IMigration = {
     name: "init",
     module: "brokered-products-plugin",
     description: "Initialize the brokerages products plugin",
@@ -43,4 +43,6 @@ export const migrations: IMigration[] = [{
             { roleName: "Customer", permissionName: "brokerage.view" },
         ]);
     }
-}];
+}
+
+export const migrations: IMigration[] = [init];
