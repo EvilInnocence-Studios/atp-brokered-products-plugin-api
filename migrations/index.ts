@@ -45,5 +45,3 @@ export const init:IMigration = {
         ]);
     }
 }
-
-export const migrations: IMigration[] = [init];
