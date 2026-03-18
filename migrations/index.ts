@@ -9,7 +9,7 @@ export const init:IMigration = {
     module: "brokered-products-plugin",
     description: "Initialize the brokerages products plugin",
     version: "1.0.0",
-    order: 3,
+    order: 4,
     down: () => db.schema
         .dropTableIfExists("brokerages")
         .alterTable("products", (t) => {
