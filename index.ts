@@ -1,4 +1,4 @@
-import { FieldRegistry } from "@core/express/util";
+import { FieldRegistry } from "../core/express/util";
 import { init } from "../brokered-products-plugin/migrations";
 
 export {apiConfig} from "./endpoints";
